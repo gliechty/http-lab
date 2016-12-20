@@ -36,7 +36,7 @@ function getCriminal(request, response) {
 
 function updateCriminal(request, response) {
   var id = request.params.id;
-
+  console.log('its running');
   Criminal.findById({_id: id}, function(error, criminal) {
     if(error) response.json({message: 'Could not find criminal b/c:' + error});
 
