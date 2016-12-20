@@ -10,6 +10,7 @@ function CriminalsController ($http){
 	self.newCriminal = {};
 	self.getCriminals = getCriminals;
 	self.deleteCriminal = deleteCriminal;
+	self.updateCriminal = updateCriminal;
 
 
 	function getCriminals(){
@@ -37,6 +38,17 @@ function CriminalsController ($http){
 				var index = self.all.indexOf(criminal);
 				self.all.splice(index, 1);
 				getCriminals();
+			});
+	}
+
+	function updateCriminal(criminal){
+		$http
+			.patch('http://localhost:3000/criminals/' + criminal._id)
+			.then(function (req){
+				var index = self.all.indexOf(criminal);
+				console.log(self.all[index]);
+				(self.all)[index].name = "PATCH";
+				// getCriminals();
 			});
 	}
 
